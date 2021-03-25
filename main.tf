@@ -3,7 +3,6 @@
 resource "aws_s3_bucket" "web-s3-bucket" {
   bucket = "web-${var.name}-bucket"
   acl    = "public-read"
-  region = var.region
 
   tags = {
     Name        = "web-${var.name}"

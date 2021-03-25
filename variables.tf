@@ -22,8 +22,3 @@ variable "cloudfront_origin_path" {
   description = "Root path in the bucket for the cloudfront"
   default     = ""
 }
-
-variable "region" {
-  description = "Region for the bucket"
-  default     = "eu-west-1"
-}
