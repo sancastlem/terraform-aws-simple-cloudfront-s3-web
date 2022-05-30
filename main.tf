@@ -2,20 +2,33 @@
 ## Bucket
 resource "aws_s3_bucket" "web-s3-bucket" {
   bucket = "web-${var.name}-bucket"
-  acl    = "public-read"
 
   tags = {
     Name        = "web-${var.name}"
     Environment = var.environment
   }
+}
 
-  versioning {
-    enabled = false
+resource "aws_s3_bucket_acl" "web-s3-bucket-acl" {
+  bucket = aws_s3_bucket.web-s3-bucket.id
+  acl    = var.acl_name
+}
+
+resource "aws_s3_bucket_versioning" "web-s3-bucket-versioning" {
+  bucket = aws_s3_bucket.web-s3-bucket.id
+  versioning_configuration {
+    status = var.versioning_status
+  }
+}
+
+resource "aws_s3_bucket_website_configuration" "web-s3-bucket-website-configuration" {
+  bucket = aws_s3_bucket.web-s3-bucket.id
+  index_document {
+    suffix = var.index_document_website
   }
 
-  website {
-    index_document = "index.html"
-    error_document = "index.html"
+  error_document {
+    key = var.error_document_website
   }
 }
 
