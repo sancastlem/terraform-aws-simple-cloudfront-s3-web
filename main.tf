@@ -2,6 +2,7 @@
 ## Bucket
 resource "aws_s3_bucket" "web-s3-bucket" {
   bucket = "web-${var.name}-bucket"
+  force_destroy = var.force_destroy
 
   tags = {
     Name        = "web-${var.name}"

@@ -42,3 +42,8 @@ variable "error_document_website" {
   description = "Error document key of your website"
   default     = "index.html"
 }
+
+variable "force_destroy" {
+  description = "Boolean value to force destroy the bucket"
+  default     = true
+}
