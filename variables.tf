@@ -47,3 +47,8 @@ variable "force_destroy" {
   description = "Boolean value to force destroy the bucket"
   default     = true
 }
+
+variable "cloudfront_status" {
+  description = "Boolean value to enable or disable Cloudfront"
+  default     = true
+}

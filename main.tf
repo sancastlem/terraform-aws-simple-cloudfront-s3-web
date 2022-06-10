@@ -42,7 +42,7 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution" {
     origin_id   = "s3-${var.name}"
   }
 
-  enabled             = true
+  enabled             = var.cloudfront_status
   is_ipv6_enabled     = true
   comment             = ""
   default_root_object = "index.html"
