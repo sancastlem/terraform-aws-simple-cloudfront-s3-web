@@ -13,6 +13,22 @@ resource "aws_s3_bucket" "web-s3-bucket" {
 resource "aws_s3_bucket_acl" "web-s3-bucket-acl" {
   bucket = aws_s3_bucket.web-s3-bucket.id
   acl    = var.acl_name
+  depends_on = [ aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership, aws_s3_bucket_public_access_block.s3_bucket_acl_public_access_block ]
+}
+
+resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership" {
+  bucket = aws_s3_bucket.web-s3-bucket.id
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "s3_bucket_acl_public_access_block" {
+  bucket = aws_s3_bucket.web-s3-bucket.id
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
 }
 
 resource "aws_s3_bucket_versioning" "web-s3-bucket-versioning" {
@@ -63,6 +79,8 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution" {
     }
 
     viewer_protocol_policy = "redirect-to-https"
+
+    cache_policy_id = var.cache_policy_id
   }
 
   restrictions {

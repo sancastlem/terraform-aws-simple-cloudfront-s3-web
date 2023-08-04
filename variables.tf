@@ -52,3 +52,8 @@ variable "cloudfront_status" {
   description = "Boolean value to enable or disable Cloudfront"
   default     = true
 }
+
+variable "cache_policy_id" {
+  description = "String value to insert a Security Cache ID value"
+  default     = ""
+}
