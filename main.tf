@@ -80,7 +80,7 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution" {
 
     viewer_protocol_policy = "redirect-to-https"
 
-    cache_policy_id = var.cache_policy_id
+    response_headers_policy_id = var.response_headers_policy_id
   }
 
   restrictions {

@@ -53,7 +53,7 @@ variable "cloudfront_status" {
   default     = true
 }
 
-variable "cache_policy_id" {
-  description = "String value to insert a Security Cache ID value"
+variable "response_headers_policy_id" {
+  description = "String value to insert a Security Policy Headers ID value"
   default     = ""
 }
