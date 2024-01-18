@@ -57,3 +57,13 @@ variable "response_headers_policy_id" {
   description = "String value to insert a Security Policy Headers ID value"
   default     = ""
 }
+
+variable "http_version" {
+  description = "String value to insert HTTP version supported"
+  default = "http2"
+}
+
+variable "price_class" {
+  description = "String value to insert a Price Class to this distribution"
+  default = "PriceClass_100"  
+}

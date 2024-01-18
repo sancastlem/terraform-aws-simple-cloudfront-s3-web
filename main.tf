@@ -58,11 +58,12 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution" {
     origin_id   = "s3-${var.name}"
   }
 
+  http_version        = var.http_version
   enabled             = var.cloudfront_status
   is_ipv6_enabled     = true
   comment             = ""
   default_root_object = "index.html"
-  price_class         = "PriceClass_100"
+  price_class         = var.price_class
   aliases             = [var.url]
 
   default_cache_behavior {
