@@ -16,6 +16,8 @@ variable "ssl_arn" {
 
 variable "url" {
   description = "Url of the app"
+  type = list(string)
+  default = []
 }
 
 variable "cloudfront_origin_path" {

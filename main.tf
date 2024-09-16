@@ -64,7 +64,7 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution" {
   comment             = ""
   default_root_object = "index.html"
   price_class         = var.price_class
-  aliases             = [var.url]
+  aliases             = var.url
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
@@ -108,8 +108,9 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution" {
 
 ## Route 53
 resource "aws_route53_record" "web-route" {
+  for_each = toset(var.url)
   zone_id = var.route53_zone_id
-  name    = var.url
+  name    = each.value
   type    = "A"
 
   alias {
